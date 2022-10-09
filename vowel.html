@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		#hlp {
+			font-family:monospace;
+			background-color: #eee;
+			padding:5px;
+			border:1px solid black;
+		}
+		#count {
+			display:inline-block;
+		}
+		.highlight {
+			background-color: rgba(164,90,192,0.875);
+		}
+	</style>
+</head>
+<body>
+	
+	<input type="text" onInput="cal()" id="inp1" ><br>
+	<b>Vowel count </b><p id="count" ></p><br>
+	<p id="hlp"></p>
+	
+	<script type="text/javascript">
+		
+		function cal(){
+			var txt= document.getElementById("inp1").value.toLowerCase();
+			var mtxt= document.getElementById("inp1").value;
+			
+			for (i=txt.length,volcount=0;i>=0;i--){
+				
+				var char= txt.charAt(i);
+				if( char=="a" || char=="e" || char=="i" || char=="o" || char=="u"){
+					volcount=volcount + 1;
+					
+					mtxt= mtxt.substring(0,i) + "<span class='highlight'>" + mtxt.charAt(i) + "</span>" + mtxt.substring(i+1);
+				}
+			}
+			
+			document.getElementById("count").innerHTML = volcount;
+			document.getElementById("hlp").innerHTML = mtxt;
+		}
+	</script>
+</body>
+</html>
