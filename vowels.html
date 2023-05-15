@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		#hlp {
+			font-family:monospace;
+			background-color: #eee;
+			padding:5px;
+			border:1px solid black;
+			word-wrap: break-word;
+		}
+		#hlp b {
+			background-color: rgba(164,90,192,0.875);
+			color:white;
+			font-weight: 100;
+		}
+		#count {
+			display:inline-block;
+		}
+	</style>
+</head>
+<body>
+	
+	<textarea style="width:94vw" rows="5" onInput="cal()" id="inp1"></textarea><br>
+	<b>Vowel count </b>
+	<p id="count" ></p>
+	<p id="hlp"></p>
+
+	<script type="text/javascript">
+	
+		function cal(){
+			var mtxt= document.getElementById("inp1").value;
+			mtxt=mtxt.replace(/>/g, "&gt;");
+			mtxt=mtxt.replace(/</g, "&lt;");
+
+			var txt= mtxt.toLowerCase();
+
+			for (i=(txt.length-1),volcount=0;i>=0;i--){
+				var char= txt.charAt(i);
+				if( char=="a" || char=="e" || char=="i" || char=="o" || char=="u"){
+					volcount++;
+					
+					mtxt= mtxt.substring(0,i) + "<b>" + mtxt.charAt(i) + "</b>" + mtxt.substring(i+1);
+				}
+			}
+			
+			document.getElementById("count").innerHTML = volcount;
+			document.getElementById("hlp").innerHTML = mtxt;
+		}
+		
+	</script>
+</body>
+</html>
